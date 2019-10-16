@@ -14,6 +14,10 @@ export const Section2 = styled.div`
 
 `
 
+export const Section3 = styled.div`
+
+`
+
 export const Title = styled.h1`
   font-size: 3em;
   letter-spacing: 2px;

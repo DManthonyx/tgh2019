@@ -4,10 +4,13 @@ import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
 import DataOne from './DataOne'
 import DataTwo from './DataTwo'
+import DataOneMap from './DataOneMap'
+import DataTwoMap from './DataTwoMap'
 import {
   Container,
   Section1,
   Section2,
+  Section3,
   BtnDiv,
   Button,
   Title
@@ -18,7 +21,7 @@ PouchDB.plugin(PouchDBFind)
 class App extends Component {
 
   state ={
-    remoteDB: new PouchDB('https://2aeca32c-420b-4fdsc5-96ef-80efdwfdefwefawefaew32e3b74711-blfduemix:c440df1364a26441bb9839a382dff32c5965dfdfb6dd1969afd80b1cf0a4d2a7df04eb9ergfadsad4dd@2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix.cloudant.com/tgh2019b'),
+    remoteDB: new PouchDB('https://2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix:c4401364a26441bb9839a382f32c5965b6dd1969afd80b1cf0a4d2a704eb94dd@2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix.cloudant.com/tgh2019'),
     localDB: new PouchDB('tgh2019b'),
     blocks: [],
     toggle: true
@@ -28,10 +31,7 @@ class App extends Component {
     if (this.state.remoteDB) {
       this.syncToRemote();
       // this.getBlocks();
-<<<<<<< HEAD
-=======
       this.filter()
->>>>>>> c1ca1c0c4f0aac97538f059b25dac32fbc856d64
     }
   }
 
@@ -77,9 +77,6 @@ class App extends Component {
 
   render() {
     console.log(this.state.blocks, 'this is blocks render')
-    const divStyle = {
-      height: '100px',
-    };
     return (
     <Container>
       <Section1>
@@ -92,6 +89,9 @@ class App extends Component {
     <Section2>
       {this.state.toggle ? <DataOne /> : <DataTwo />}
     </Section2>
+    <Section3>
+    {this.state.toggle ? <DataOneMap blocks={this.state.blocks} /> : <DataTwoMap blocks={this.state.blocks} />}
+    </Section3>
      </Container>
     );
   }
