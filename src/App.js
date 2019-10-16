@@ -13,7 +13,9 @@ import {
   Section3,
   BtnDiv,
   Button,
-  Title
+  Title,
+  NewBlock,
+  Img
 } from './style.js'
 
 PouchDB.plugin(PouchDBFind)
@@ -24,7 +26,8 @@ class App extends Component {
     remoteDB: new PouchDB('https://2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix:c4401364a26441bb9839a382f32c5965b6dd1969afd80b1cf0a4d2a704eb94dd@2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix.cloudant.com/tgh2019'),
     localDB: new PouchDB('tgh2019b'),
     blocks: [],
-    toggle: true
+    toggle: true,
+    newBlock: false
   }
 
   componentDidMount = () => {
@@ -47,13 +50,17 @@ class App extends Component {
     .on('change', change => {
       console.log('---------------')
       this.getPouchDocs(change);
+      this.setState({
+        newBlock: true
+      })
     })
     .on('error', err => console.log('uh oh! an error occured while synching.'));
-    console.log(this.state.localDB, 'this is remoteDB sync ')
+    console.log(this.state.localDB, 'this is localDB sync ')
+    console.log(this.state.remoteDB, 'this is remoteDB sync ')
   }
   
   filter = () => {
-    this.state.remoteDB.allDocs({
+    this.state.localDB.allDocs({
       include_docs: true,
       attachments: true
      }).then((result) => this.setState({ blocks: [result.rows]}) 
@@ -77,10 +84,18 @@ class App extends Component {
 
   render() {
     console.log(this.state.blocks, 'this is blocks render')
+    console.log(this.state.localDB,   'this is get pouch')
     return (
     <Container>
+      {
+        this.state.newBlock
+        ?
+        <NewBlock>New Block Added</NewBlock>
+        :
+        null
+      }
       <Section1>
-        <Title>Casper Labs Plasma XR</Title>
+        <Img src="https://i.imgur.com/YbT52yZ.png"/>
         <BtnDiv>
           <Button onClick={() => this.switchDataTen()}>Today</Button>
           <Button onClick={() => this.switchDataTwenty()}>This Week</Button>

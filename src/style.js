@@ -7,7 +7,10 @@ export const Container = styled.div`
 `
 
 export const Section1 = styled.div`
-  background: #333333;
+      background: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export const Section2 = styled.div`
@@ -18,10 +21,21 @@ export const Section3 = styled.div`
 
 `
 
+export const NewBlock = styled.div`
+
+`
+export const Img = styled.img`
+    width: 27%;
+    height: 210px
+
+
+`
+
 export const Title = styled.h1`
   font-size: 3em;
   letter-spacing: 2px;
   text-align: center;
+  margin-top: 0px;
 `
 
 export const BtnDiv = styled.div`
