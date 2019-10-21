@@ -23,7 +23,7 @@ PouchDB.plugin(PouchDBFind)
 class App extends Component {
 
   state ={
-    remoteDB: new PouchDB('https://2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix:c4401364a26441bb9839a382f32c5965b6dd1969afd80b1cf0a4d2a704eb94dd@2aeca32c-420b-42c5-96ef-8032e3b74711-bluemix.cloudant.com/tgh2019'),
+    remoteDB: new PouchDB(enter in IBM cloudant)
     localDB: new PouchDB('tgh2019b'),
     blocks: [],
     toggle: true,
